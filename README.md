@@ -4,11 +4,13 @@ Enables use of intentionally disabled cmdline args in Alan Wake 2
 ## Some known arguments
 * `-alwayslogmetrics`
 * `-autojump`
+* `-buildresourcelists`
 * `-bundlemode off|on|default`
 * `-bundles name` "Bundles to load when the loading into a level"
 * `-cmdline`
 * `-consolewindow`
 * `-cpucore N` where N is an integer
+* `-debugd3d no|fast|medium|full`
 * `-demo`
 * `-debuglayer N` where N is an integer
 * `-disablegraylog`
@@ -34,12 +36,19 @@ Enables use of intentionally disabled cmdline args in Alan Wake 2
 * `-nofittodisplay`
 * `-nolensdistortion`
 * `-nomemcheck`
+* `-norumble`
 * `-nosound`
+* `-noui`
 * `-novsync`
+* `-nowaitontexturestreaming`
+* `-nowatermark`
+* `-nwed default|hosted|standalone`
+* `-offline`
 * `-openjumppointnav`
 * `-profilehistoryfile path` where path is a string
 * `-profilehistoryhost hostname` where hostname is a string
 * `-profilehistorytoken token` where token is a string
+* `-reallocategiresources`
 * `-res width*height`
 * `-savegame path` "Path relative to 'commondata/data/savegames/'" 
 * `-showasserts`
@@ -47,10 +56,14 @@ Enables use of intentionally disabled cmdline args in Alan Wake 2
 * `-skiploadingprompt`
 * `-skipsplashscreen`
 * `-skipvideos`
+* `-skipplatformrestart`
 * `-stacktrace`
 * `-telemetryonlaunch`
 * `-testingmode`
 * `-tickrate N` where N is an integer
+* `-thumbnailmesh filename`
+* `-thumbnailmeshlistfile filename`
+* `-thumbnailserver`
 * `-useasyncio`
 * `-useloose`
 * `-usesecondarymonitor`
