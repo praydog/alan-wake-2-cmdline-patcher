@@ -3,6 +3,7 @@ Enables use of intentionally disabled cmdline args in Alan Wake 2
 
 ## Some known arguments
 * `-alwayslogmetrics`
+* `-alwaysontop`
 * `-autojump`
 * `-buildresourcelists`
 * `-bundlemode off|on|default`
@@ -14,9 +15,12 @@ Enables use of intentionally disabled cmdline args in Alan Wake 2
 * `-demo`
 * `-debuglayer N` where N is an integer
 * `-disablegraylog`
+* `-disableshadermodificationcheck`
 * `-editbundle name` where `name` is a string
 * `-embeddable`
+* `-enabledds`
 * `-enablewindowscaling`
+* `-enablewindowresizing`
 * `-forcedebuglayer`
 * `-forcesplashscreen`
 * `-gamepad N` where N is an integer
@@ -34,7 +38,9 @@ Enables use of intentionally disabled cmdline args in Alan Wake 2
 * `-nodiskcheck`
 * `-nodxr`
 * `-nofittodisplay`
+* `-nohdtextures`
 * `-nolensdistortion`
+* `-nomatchclosestresolution`
 * `-nomemcheck`
 * `-norumble`
 * `-nosound`
@@ -68,6 +74,7 @@ Enables use of intentionally disabled cmdline args in Alan Wake 2
 * `-useloose`
 * `-usesecondarymonitor`
 * `-usesymbolserver`
+* `-videomemsize N` where N is an integer
 * `-verbose`
 * `-w N` where N is an integer
 * `-warningdialog`
