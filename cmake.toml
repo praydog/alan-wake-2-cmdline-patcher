@@ -78,7 +78,7 @@ include-directories = [
     "plugin/"
 ]
 compile-options = ["/GS-", "/bigobj", "/EHa", "/MP"]
-compile-features = ["cxx_std_20"]
+compile-features = ["cxx_std_23"]
 compile-definitions = []
 link-libraries = [
     "kananlib"
