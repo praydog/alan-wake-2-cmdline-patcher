@@ -172,7 +172,7 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${aw2-cmdline-plugin_SOURCES
 
 
 target_compile_features(aw2-cmdline-plugin PUBLIC
-	cxx_std_20
+	cxx_std_23
 )
 
 target_compile_options(aw2-cmdline-plugin PUBLIC

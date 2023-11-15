@@ -45,7 +45,7 @@ void startup_thread() {
 bool IsUALPresent() {
     for (const auto& entry : std::stacktrace::current()) {
         HMODULE hModule = NULL;
-        if (GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, (LPCTSTR)entry.native_handle(), &hModule)) {
+        if (GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, (LPCSTR)entry.native_handle(), &hModule)) {
             if (GetProcAddress(hModule, "IsUltimateASILoader") != NULL)
                 return true;
         }
