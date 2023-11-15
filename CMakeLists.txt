@@ -149,3 +149,67 @@ target_compile_definitions(aw2-cmdline-standalone PUBLIC
 unset(CMKR_TARGET)
 unset(CMKR_SOURCES)
 
+# Target aw2-cmdline-plugin
+set(CMKR_TARGET aw2-cmdline-plugin)
+set(aw2-cmdline-plugin_SOURCES "")
+
+list(APPEND aw2-cmdline-plugin_SOURCES
+	"plugin/Main.cpp"
+)
+
+list(APPEND aw2-cmdline-plugin_SOURCES
+	cmake.toml
+)
+
+set(CMKR_SOURCES ${aw2-cmdline-plugin_SOURCES})
+add_library(aw2-cmdline-plugin SHARED)
+
+if(aw2-cmdline-plugin_SOURCES)
+	target_sources(aw2-cmdline-plugin PRIVATE ${aw2-cmdline-plugin_SOURCES})
+endif()
+
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${aw2-cmdline-plugin_SOURCES})
+
+
+target_compile_features(aw2-cmdline-plugin PUBLIC
+	cxx_std_20
+)
+
+target_compile_options(aw2-cmdline-plugin PUBLIC
+	"/GS-"
+	"/bigobj"
+	"/EHa"
+	"/MP"
+)
+
+target_include_directories(aw2-cmdline-plugin PUBLIC
+	"plugin/"
+)
+
+target_link_libraries(aw2-cmdline-plugin PUBLIC
+	kananlib
+)
+
+set_target_properties(aw2-cmdline-plugin PROPERTIES
+	RUNTIME_OUTPUT_DIRECTORY_RELEASE
+		"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
+	RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO
+		"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
+	LIBRARY_OUTPUT_DIRECTORY_RELEASE
+		"${CMAKE_BINARY_DIR}/lib/${CMKR_TARGET}"
+	LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO
+		"${CMAKE_BINARY_DIR}/lib/${CMKR_TARGET}"
+	ARCHIVE_OUTPUT_DIRECTORY_RELEASE
+		"${CMAKE_BINARY_DIR}/lib/${CMKR_TARGET}"
+	ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO
+		"${CMAKE_BINARY_DIR}/lib/${CMKR_TARGET}"
+)
+
+target_compile_definitions(aw2-cmdline-plugin PUBLIC 
+    NOMINMAX
+    WINVER=0x0A00
+)
+
+unset(CMKR_TARGET)
+unset(CMKR_SOURCES)
+
