@@ -5,6 +5,8 @@
 #include <utility/Patch.hpp>
 #include <utility/RTTI.hpp>
 
+#include <stacktrace>
+
 bool ret1() {
     return true;
 }
@@ -40,30 +42,31 @@ void startup_thread() {
     SPDLOG_INFO("Patched vtable[2] to 0x{:X}", vtp[2]);
 }
 
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
-    if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
-        if (g_already_patched) {
-            return TRUE;
+bool IsUALPresent() {
+    for (const auto& entry : std::stacktrace::current()) {
+        HMODULE hModule = NULL;
+        if (GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, (LPCSTR)entry.native_handle(), &hModule)) {
+            if (GetProcAddress(hModule, "IsUltimateASILoader") != NULL)
+                return true;
         }
-
-        g_already_patched = true;
-        startup_thread();
-        //CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)startup_thread, nullptr, 0, nullptr);
     }
-
-    return TRUE;
+    return false;
 }
 
 extern "C" __declspec(dllexport) void InitializeASI()
 {
-    __try
-    {
-        if (!g_already_patched) {
-            g_already_patched = true;
-            startup_thread();
-        }
+    if (g_already_patched) {
+        return;
     }
-    __except ((GetExceptionCode() == EXCEPTION_ACCESS_VIOLATION) ? EXCEPTION_EXECUTE_HANDLER : EXCEPTION_CONTINUE_SEARCH)
-    {
+
+    g_already_patched = true;
+    startup_thread();
+}
+
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
+    if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
+        if (!IsUALPresent()) { InitializeASI(); }
     }
+
+    return TRUE;
 }
